@@ -13,14 +13,15 @@ class Button1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 3,
       color: color,
       borderRadius: BorderRadius.circular(30),
-      child: Text(label,
-        style: TextStyle(
-          color: textColor,
-            fontSize: 32,
-            fontWeight: FontWeight.w500),)
+      child: Center(
+        child: Text(label,
+          style: TextStyle(
+            color: textColor,
+              fontSize: 38,
+              fontWeight: FontWeight.w500),),
+      )
         
     );
   }

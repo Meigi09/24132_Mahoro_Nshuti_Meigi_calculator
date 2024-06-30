@@ -1,6 +1,6 @@
-import 'package:calculator_app/constant/colors.dart';
-import 'package:calculator_app/screens/widget_data.dart';
-import 'package:calculator_app/widgets/buttons.dart';
+import 'package:calculatorapp/constant/colors.dart';
+import 'package:calculatorapp/screens/widget_data.dart';
+import 'package:calculatorapp/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
