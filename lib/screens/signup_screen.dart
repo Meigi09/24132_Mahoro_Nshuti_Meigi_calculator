@@ -4,23 +4,32 @@ import 'package:flutter/material.dart';
 import '../widgets/my_button.dart';
 import '../widgets/text_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class RegistrationScreen extends StatelessWidget {
+  RegistrationScreen({super.key});
   final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final secondNameController = TextEditingController();
+  final dobController = TextEditingController();
   final passwordController = TextEditingController();
+  final confPassController = TextEditingController();
 
-  void signUserIn() {}
+  void signUserUp() {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
           const SizedBox(height: 50),
-
+          Icon(
+            Icons.person,
+            size: 80,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
           // welcome back, you've been missed!
           Text(
-            'Welcome back you\'ve been missed!',
+            'U M U N T U',
             style: TextStyle(
               color: Colors.grey[700],
               fontSize: 16,
@@ -38,10 +47,47 @@ class LoginScreen extends StatelessWidget {
 
           const SizedBox(height: 10),
 
+          MyTextField(
+            controller: emailController,
+            hintText: 'Email',
+            obscureText: false,
+          ),
+          const SizedBox(height: 10),
+
+          MyTextField(
+            controller: firstNameController,
+            hintText: 'First Name',
+            obscureText: false,
+          ),
+          const SizedBox(height: 10),
+
+          MyTextField(
+            controller: secondNameController,
+            hintText: 'Last Name',
+            obscureText: false,
+          ),
+          const SizedBox(height: 10),
+
+          MyTextField(
+            controller: dobController,
+            hintText: 'Date of birth',
+            obscureText: false,
+          ),
+
+          const SizedBox(height: 10),
+
           // password textfield
           MyTextField(
             controller: passwordController,
             hintText: 'Password',
+            obscureText: true,
+          ),
+          const SizedBox(height: 10),
+
+          // password textfield
+          MyTextField(
+            controller: confPassController,
+            hintText: 'Confirm Password',
             obscureText: true,
           ),
 
@@ -55,7 +101,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Text(
                   'Forgot Password?',
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: TextStyle(color: Theme.of(context).colorScheme.secondary),
                 ),
               ],
             ),
@@ -65,12 +111,25 @@ class LoginScreen extends StatelessWidget {
 
           // sign in button
           MyButton(
-            onTap: signUserIn,
+            onTap: signUserUp, label: 'Sign Up',
           ),
 
-          const SizedBox(height: 50),
-
-
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Already have an account?'),
+              GestureDetector(
+                onTap: (){},
+                child: const Text(
+                  'Login Here',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              )
+            ],
+          )
         ],
       ),
     );

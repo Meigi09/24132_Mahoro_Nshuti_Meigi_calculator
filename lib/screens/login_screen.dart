@@ -13,14 +13,18 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
           const SizedBox(height: 50),
-
+          Icon(
+            Icons.person,
+            size: 80,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
           // welcome back, you've been missed!
           Text(
-            'Welcome back you\'ve been missed!',
+            'U M U N T U',
             style: TextStyle(
               color: Colors.grey[700],
               fontSize: 16,
@@ -55,7 +59,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Text(
                   'Forgot Password?',
-                  style: TextStyle(color: Colors.grey[600]),
+                  style: TextStyle(color: Theme.of(context).colorScheme.secondary),
                 ),
               ],
             ),
@@ -65,11 +69,25 @@ class LoginScreen extends StatelessWidget {
 
           // sign in button
           MyButton(
-            onTap: signUserIn,
+            onTap: signUserIn, label: 'Sign In',
           ),
 
           const SizedBox(height: 50),
-
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Don\'t have an account?'),
+              GestureDetector(
+                onTap: (){},
+                child: const Text(
+                    'Register Here',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              )
+            ],
+          )
 
         ],
       ),
