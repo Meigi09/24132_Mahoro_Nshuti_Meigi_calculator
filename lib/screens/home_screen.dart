@@ -3,6 +3,7 @@ import 'package:calculator_app/firestore_db/firestore.dart';
 import 'package:calculator_app/screens/widget_data.dart';
 import 'package:calculator_app/theme/theme_provider.dart';
 import 'package:calculator_app/widgets/buttons.dart';
+import 'package:calculator_app/widgets/my_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -76,34 +77,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
           ),
 
-          drawer: Drawer(
-            child: Container(
-              color: Theme.of(context).colorScheme.primary,
-              child: ListView(
-                children: [
-                  DrawerHeader(child: Center(
-                    child: Text(
-                      'C A L C U L A T O R   A P P',
-                      style: TextStyle(
-                          fontSize: 20
-                      ),
-                    ),
-                  )),
-                  ListTile(
-                    leading: Icon(Icons.app_shortcut),
-                    title: Text('Calculator'),
-                    //onTap: Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen())),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.change_circle_rounded),
-                    title: Text('Theme'),
-                    //onTap: Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HomeScreen())),
-                  )
-                ],
-              ),
-            ),
-          ),
-
+          drawer:const MyDrawer(),
           body: TabBarView(
             controller: _tabController,
             children: [

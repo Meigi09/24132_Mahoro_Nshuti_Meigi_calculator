@@ -1,16 +1,49 @@
 import 'package:calculator_app/widgets/buttons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/my_button.dart';
 import '../widgets/text_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+class LoginScreen extends StatefulWidget {
+  final void Function()? onTap;
 
-  void signUserIn() {}
+  const LoginScreen({super.key,required this.onTap});
+
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  Future<void> signIn() async{
+    showDialog(
+        context: context,
+        builder: (context)=>const Center(
+          child: CircularProgressIndicator(),
+        ));
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text);
+
+      if(context.mounted)Navigator.pop(context);
+    }on FirebaseAuthException catch(e){
+      Navigator.pop(context);
+    }
+
+  }
+
+
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -35,8 +68,8 @@ class LoginScreen extends StatelessWidget {
 
           // username textfield
           MyTextField(
-            controller: usernameController,
-            hintText: 'Username',
+            controller: _emailController,
+            hintText: 'Email',
             obscureText: false,
           ),
 
@@ -44,7 +77,7 @@ class LoginScreen extends StatelessWidget {
 
           // password textfield
           MyTextField(
-            controller: passwordController,
+            controller: _passwordController,
             hintText: 'Password',
             obscureText: true,
           ),
@@ -69,7 +102,7 @@ class LoginScreen extends StatelessWidget {
 
           // sign in button
           MyButton(
-            onTap: signUserIn, label: 'Sign In',
+            onTap: signIn, label: 'Sign In',
           ),
 
           const SizedBox(height: 50),
@@ -78,7 +111,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               Text('Don\'t have an account?'),
               GestureDetector(
-                onTap: (){},
+                onTap: widget.onTap,
                 child: const Text(
                     'Register Here',
                   style: TextStyle(

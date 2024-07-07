@@ -11,6 +11,7 @@ class LoginOrRegister extends StatefulWidget {
 
 class _LoginOrRegisterState extends State<LoginOrRegister> {
   bool showLoginPage=true;
+
   void tooglePages(){
     setState(() {
       showLoginPage=!showLoginPage;
@@ -19,9 +20,9 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
   @override
   Widget build(BuildContext context) {
     if(showLoginPage){
-      return LoginScreen();
+      return LoginScreen(onTap: tooglePages,);
     }else{
-      return RegistrationScreen();
+      return RegistrationScreen(onTap: tooglePages,);
     }
   }
 }
